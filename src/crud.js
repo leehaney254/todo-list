@@ -1,37 +1,73 @@
 const unorderedList = document.querySelector('#unordered');
 const list = [
   {
-    index: 1,
+    index: 0,
     description: 'Double-tap to edit',
     completed: false,
   },
 ];
 
-const createList = () => {
-  list.forEach((item) => {
-    const listItem = document.createElement('li');
-    const checkBox = document.createElement('input');
-    const arrange = document.createElement('i');
-    const content = document.createElement('span');
-    const checkContent = document.createElement('span');
-    arrange.setAttribute('aria-hidden', 'true');
-    checkBox.setAttribute('type', 'checkbox');
-    arrange.classList.add('fa', 'fa-ellipsis-v');
-    content.classList.add('listmarg');
-    checkBox.classList.add('point', 'check');
-    checkContent.classList.add('height');
-    arrange.classList.add('move');
-    listItem.classList.add('lists');
-    const { description } = item;
-    content.innerText = description;
-    checkContent.appendChild(checkBox);
-    checkContent.appendChild(content);
-    listItem.appendChild(checkContent);
-    listItem.appendChild(arrange);
-    unorderedList.appendChild(listItem);
+const deleteItem = () => {
+  const deleteElement = document.querySelectorAll('.icondelete');
+  deleteElement.forEach((element, index) => {
+    element.addEventListener('click', () => {
+      if (element.innerHTML === '<i class="fa fa-trash-o point" aria-hidden="true"></i>') {
+        console.log(element.innerHTML);
+      } else {
+        list.splice(index, 1);
+        console.log(list);
+        createList();
+      }
+    });
   });
-  edit();
+}
+
+const editElement = () => {
+  const listElement = document.querySelectorAll('.listmarg');
+  const deleteElement = document.querySelectorAll('.icondelete');
+  listElement.forEach((element, index) => {
+    element.addEventListener('click', () => {
+      element.innerHTML = '';
+      element.innerHTML += `
+      <input type="text" class="edit border" placeholder="${list[index].description}">
+      `;
+      deleteElement.forEach((element, pos) => {
+        if (index === pos) {
+          element.innerHTML = '';
+          element.innerHTML += `
+          <i class="fa fa-trash-o point" aria-hidden="true"></i>
+          `;
+        }
+        deleteItem();
+      });
+    });
+  });
+}
+
+const completeTask = () => {
+  const checkElement = document.querySelectorAll('.check');
+  checkElement.forEach((item) => {
+
+  });
+}
+
+const createList = () => {
+  unorderedList.innerHTML = '';
+  list.forEach((item) => {
+    unorderedList.innerHTML += `
+    <li class="lists"><span class="height">
+    <input type="checkbox" class="point check">
+    <span class="listmarg">${item.description}</span>
+    </span>
+    <span class="icondelete">
+    <i aria-hidden="true" class="fa fa-ellipsis-v move"></i>
+    </span>
+    </li>
+    `;
+  });
+  editElement();
 };
+
 
 const add = (input) => {
   const addObj = {};
@@ -41,22 +77,6 @@ const add = (input) => {
   list.push(addObj);
   unorderedList.innerHTML = '';
   createList();
-}
-
-const edit = () => {
-  const listElement = document.querySelectorAll('.listmarg');
-
-  listElement.forEach((element, index) => {
-    element.addEventListener('click', () => {
-      const editField = document.createElement('input');
-      editField.setAttribute('type', 'text');
-      editField.classList.add('edit');
-      const { description } = list[index];
-      editField.value = description;
-      element.innerHTML = '';
-      element.appendChild(editField);
-    })
-  });
 }
 
 export default add;

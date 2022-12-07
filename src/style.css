@@ -83,7 +83,7 @@
 
 .edit {
   width: 95%;
-  height: 50px;
+  height: 96%;
   border: none;
 }
 
@@ -107,4 +107,9 @@
   height: 100%;
   display: flex;
   align-items: center;
+}
+
+.border {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
 }
