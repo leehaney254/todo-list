@@ -49,7 +49,6 @@
 
 .lists {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid gray;
   height: 50px;
@@ -58,6 +57,10 @@
 
 .listmarg {
   margin-left: 0.8rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 20rem;
 }
 
 #complete {
@@ -78,6 +81,16 @@
   cursor: pointer;
 }
 
+.edit {
+  width: 95%;
+  height: 50px;
+  border: none;
+}
+
+.edit:focus {
+  outline: none;
+}
+
 .move {
   cursor: move;
 }
@@ -88,4 +101,10 @@
 
 .check {
   outline: 1px solid #808080;
+}
+
+.height {
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
