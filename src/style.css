@@ -1,7 +1,91 @@
-.hello {
-  color: red;
+#centerlist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
 }
 
-body {
-  background-color: bisque;
+#unordered {
+  list-style: none;
+  border-top: 1px solid gray;
+  padding: 0;
+  margin: 0;
+}
+
+.flexs {
+  display: flex;
+}
+
+.fa {
+  color: gray !important;
+}
+
+#class-box {
+  background-color: white;
+  width: 50%;
+  box-shadow: 20px 20px 50px 15px grey;
+}
+
+#head {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+  margin: 0;
+  padding: 15px 0.8rem;
+  font-size: large;
+  font-weight: 500;
+}
+
+#input {
+  width: 90%;
+  height: 50px;
+  border: none;
+}
+
+#input:focus {
+  outline: none;
+}
+
+.lists {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid gray;
+  height: 50px;
+  padding: 0 0.8rem;
+}
+
+.listmarg {
+  margin-left: 0.8rem;
+}
+
+#complete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e8e8e8;
+  height: 3.2rem;
+}
+
+#comp {
+  color: #909090;
+}
+
+#comp:hover {
+  color: #696969;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.move {
+  cursor: move;
+}
+
+.point {
+  cursor: pointer;
+}
+
+.check {
+  outline: 1px solid #808080;
 }

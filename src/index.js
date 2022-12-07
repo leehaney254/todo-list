@@ -1,14 +1,52 @@
-import _ from 'lodash';
 import './style.css';
 
-function component() {
-  const element = document.createElement('div');
+const list = [
+  {
+    index: 1,
+    description: 'Double-tap to edit',
+    completed: false,
+  },
+  {
+    index: 1,
+    description: 'Drag \'n drop to render your list',
+    completed: false,
+  },
+  {
+    index: 1,
+    description: 'Manage all your lists in one place',
+    completed: false,
+  },
+  {
+    index: 1,
+    description: 'Resync to clear out the old',
+    completed: false,
+  },
+];
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
+const unorderedList = document.querySelector('#unordered');
 
-  return element;
-}
+const createList = () => {
+  list.forEach((item) => {
+    const listItem = document.createElement('li');
+    const checkBox = document.createElement('input');
+    const arrange = document.createElement('i');
+    const content = document.createElement('span');
+    const checkContent = document.createElement('span');
+    arrange.setAttribute('aria-hidden', 'true');
+    checkBox.setAttribute('type', 'checkbox');
+    arrange.classList.add('fa', 'fa-ellipsis-v');
+    content.classList.add('listmarg');
+    checkBox.classList.add('point', 'check');
+    arrange.classList.add('move');
+    listItem.classList.add('lists');
+    const { description } = item;
+    content.innerText = description;
+    checkContent.appendChild(checkBox);
+    checkContent.appendChild(content);
+    listItem.appendChild(checkContent);
+    listItem.appendChild(arrange);
+    unorderedList.appendChild(listItem);
+  });
+};
 
-document.body.appendChild(component());
+createList();
