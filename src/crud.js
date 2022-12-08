@@ -7,15 +7,15 @@ const list = [
   },
 ];
 
-const deleteItem = () => {
+window.deleteItem = () => {
   const deleteElement = document.querySelectorAll('.icondelete');
   deleteElement.forEach((element, index) => {
     element.addEventListener('click', () => {
       if (element.innerHTML === '<i class="fa fa-trash-o point" aria-hidden="true"></i>') {
         console.log(element.innerHTML);
       } else {
-        list.splice(index, 1);
-        console.log(list);
+        const spli = list.splice(index, 1);
+        console.log(spli);
         createList();
       }
     });
@@ -35,10 +35,9 @@ const editElement = () => {
         if (index === pos) {
           element.innerHTML = '';
           element.innerHTML += `
-          <i class="fa fa-trash-o point" aria-hidden="true"></i>
+          <i class="fa fa-trash-o point" aria-hidden="true" onclick='deleteItem()'></i>
           `;
         }
-        deleteItem();
       });
     });
   });
@@ -46,8 +45,23 @@ const editElement = () => {
 
 const completeTask = () => {
   const checkElement = document.querySelectorAll('.check');
-  checkElement.forEach((item) => {
-
+  const listText = document.querySelectorAll('.listmarg');
+  checkElement.forEach((item, index) => {
+    document.addEventListener('click', () => {
+      if (item.checked === true) {
+        listText.forEach((element, pos) => {
+          if (index === pos) {
+            element.classList.add('canceltext');
+          }
+        });
+      } else {
+        listText.forEach((element, pos) => {
+          if (index === pos) {
+            element.classList.remove('canceltext');
+          }
+        });
+      }
+    });
   });
 }
 
@@ -66,6 +80,7 @@ const createList = () => {
     `;
   });
   editElement();
+  completeTask();
 };
 
 
