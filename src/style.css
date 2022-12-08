@@ -82,7 +82,7 @@
 }
 
 .edit {
-  width: 95%;
+  width: 20rem;
   height: 96%;
   border: none;
 }
@@ -116,4 +116,21 @@
 
 .canceltext {
   text-decoration: line-through;
+}
+
+#emptylist {
+  border-top: 1px solid gray;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: green;
+}
+
+.disp {
+  display: none;
+}
+
+.nodisp {
+  display: inline;
 }

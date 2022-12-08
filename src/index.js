@@ -1,10 +1,10 @@
 import './style.css';
-import add, { createList } from './crud.js';
+import add, { createList, clearComplete } from './crud.js';
 
-createList();
-
+window.addEventListener('load', createList());
 // Add an event
 const inputChange = document.querySelector('#input');
+clearComplete();
 
 inputChange.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') {
