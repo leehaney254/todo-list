@@ -2,7 +2,7 @@ const unorderedList = document.querySelector('#unordered');
 
 const storeData = (storedTask) => {
   localStorage.setItem('todolist', JSON.stringify(storedTask));
-}
+};
 
 const getData = () => {
   const bookShelfstr = localStorage.getItem('todolist');
@@ -12,7 +12,36 @@ const getData = () => {
     return empty;
   }
   return bookArray;
-}
+};
+
+const storeEdit = () => {
+  const events = document.querySelectorAll('.event');
+  const list = getData();
+  events.forEach((element, index) => {
+    element.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        const edits = element.value;
+        if (edits === '') {
+          const par = element.parentNode.parentNode;
+          par.innerHTML = '';
+          par.innerHTML = `
+          <input type="checkbox" class="point check">
+          <span class="listmarg">${list[index].description}</span></span>
+          <span class="icondelete"><i aria-hidden="true" class="fa fa-ellipsis-v move"></i>
+          </span>`;
+          // eslint-disable-next-line no-use-before-define
+          editElement();
+        } else {
+          list[index].description = edits;
+          list[index].completed = false;
+          storeData(list);
+          // eslint-disable-next-line no-use-before-define
+          createList();
+        }
+      }
+    });
+  });
+};
 
 const editElement = () => {
   const listElement = document.querySelectorAll('.listmarg');
@@ -22,16 +51,17 @@ const editElement = () => {
       const parents = element.parentNode.parentNode;
       parents.innerHTML = '';
       parents.innerHTML = `
-      <li class="lists"><span class="height">
+      <span class="del"><span class='heights'>
       <input type="checkbox" class="point check">
-      <input type="text" class="edit border" placeholder="${list[index].description}">
-      <span class="icondelete"><i class="fa fa-trash-o point" aria-hidden="true" onclick='deleteItem()'></i>
+      <input type="text" class="edit event" placeholder="${list[index].description}">
       </span>
-      </li>
+      <span class="icondelete"><i class="fa fa-trash-o point" aria-hidden="true" onclick='deleteItem()'></i>
+      </span></span>
       `;
+      storeEdit();
     });
   });
-}
+};
 
 const completeTask = () => {
   const checkElement = document.querySelectorAll('.check');
@@ -58,7 +88,7 @@ const completeTask = () => {
       }
     });
   });
-}
+};
 
 const createList = () => {
   const listMess = document.querySelector('#noth');
@@ -68,7 +98,7 @@ const createList = () => {
     listMess.innerHTML = '<p id="emptylist">You do not have any tasks</p>';
   } else {
     listMess.innerHTML = '';
-    list.forEach((item, index) => {
+    list.forEach((item) => {
       if (item.completed === true) {
         unorderedList.innerHTML += `
       <li class="lists"><span class="height">
@@ -104,8 +134,8 @@ const clearComplete = () => {
     });
     storeData(list);
     createList();
-  })
-}
+  });
+};
 
 const add = (input) => {
   const addObj = {};
@@ -121,7 +151,7 @@ const add = (input) => {
   storeData(list);
   unorderedList.innerHTML = '';
   createList();
-}
+};
 
 window.deleteItem = () => {
   const deleteElement = document.querySelectorAll('.icondelete');
@@ -139,7 +169,7 @@ window.deleteItem = () => {
       createList();
     });
   });
-}
+};
 
 export default add;
 export { createList, clearComplete };
