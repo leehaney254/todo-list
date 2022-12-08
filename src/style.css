@@ -13,6 +13,10 @@
   margin: 0;
 }
 
+.event {
+  height: 100%;
+}
+
 .flexs {
   display: flex;
 }
@@ -49,15 +53,31 @@
 
 .lists {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid gray;
   height: 50px;
   padding: 0 0.8rem;
 }
 
+.del {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.heights {
+  height: 100%;
+}
+
 .listmarg {
   margin-left: 0.8rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 20rem;
 }
 
 #complete {
@@ -78,6 +98,16 @@
   cursor: pointer;
 }
 
+.edit {
+  width: auto;
+  height: 96%;
+  border: none;
+}
+
+.edit:focus {
+  outline: none;
+}
+
 .move {
   cursor: move;
 }
@@ -88,4 +118,36 @@
 
 .check {
   outline: 1px solid #808080;
+}
+
+.height {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.border {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+.canceltext {
+  text-decoration: line-through;
+}
+
+#emptylist {
+  border-top: 1px solid gray;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: green;
+}
+
+.disp {
+  display: none;
+}
+
+.nodisp {
+  display: inline;
 }
