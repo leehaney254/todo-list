@@ -101,6 +101,7 @@ const clearComplete = () => {
   const removeComplete = document.querySelector('#comp');
   removeComplete.addEventListener('click', () => {
     let list = getData();
+    console.log(list);
     list = list.filter((element) => element.completed === false);
     list.forEach((item, index) => {
       item.index = index;

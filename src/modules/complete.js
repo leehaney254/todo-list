@@ -17,26 +17,26 @@ const completeTask = () => {
   const listText = document.querySelectorAll('.listmarg');
   const list = getData();
   checkElement.forEach((item, index) => {
-    document.addEventListener('click', () => {
+    item.addEventListener('click', () => {
       if (item.checked === true) {
+        list[index].completed = true;
+        storeData(list);
         listText.forEach((element, pos) => {
           if (index === pos) {
             element.classList.add('canceltext');
-            list[index].completed = true;
-            storeData(list);
           }
         });
       } else {
+        list[index].completed = false;
+        storeData(list);
         listText.forEach((element, pos) => {
           if (index === pos) {
             element.classList.remove('canceltext');
-            list[index].completed = false;
-            storeData(list);
           }
         });
       }
-    });
-  });
+    })
+  })
 };
 
 export { storeData, getData, completeTask }
