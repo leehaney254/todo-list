@@ -1,22 +1,19 @@
+import { storeData, getData, completeTask } from './complete.js'
+
 const unorderedList = document.querySelector('#unordered');
-
-const storeData = (storedTask) => {
-  localStorage.setItem('todolist', JSON.stringify(storedTask));
-};
-
-const getData = () => {
-  const bookShelfstr = localStorage.getItem('todolist');
-  const bookArray = JSON.parse(bookShelfstr);
-  if (bookArray === null) {
-    const empty = [];
-    return empty;
-  }
-  return bookArray;
-};
 
 const storeEdit = () => {
   const events = document.querySelectorAll('.event');
+  const count = document.querySelectorAll('.lists');
   const list = getData();
+  let position;
+
+  count.forEach((element, index) => {
+    element.addEventListener('click', () => {
+      position = index;
+    })
+  })
+
   events.forEach((element, index) => {
     element.addEventListener('keypress', (event) => {
       if (event.key === 'Enter') {
@@ -26,14 +23,17 @@ const storeEdit = () => {
           par.innerHTML = '';
           par.innerHTML = `
           <input type="checkbox" class="point check">
-          <span class="listmarg">${list[index].description}</span></span>
+          <span class="listmarg">${list[position].description}</span></span>
           <span class="icondelete"><i aria-hidden="true" class="fa fa-ellipsis-v move"></i>
           </span>`;
           // eslint-disable-next-line no-use-before-define
           editElement();
         } else {
-          list[index].description = edits;
-          list[index].completed = false;
+          const obj = {};
+          obj.index = position;
+          obj.description = edits;
+          obj.completed = false;
+          list.splice(position, 1, obj)
           storeData(list);
           // eslint-disable-next-line no-use-before-define
           createList();
@@ -59,33 +59,6 @@ const editElement = () => {
       </span></span>
       `;
       storeEdit();
-    });
-  });
-};
-
-const completeTask = () => {
-  const checkElement = document.querySelectorAll('.check');
-  const listText = document.querySelectorAll('.listmarg');
-  const list = getData();
-  checkElement.forEach((item, index) => {
-    document.addEventListener('click', () => {
-      if (item.checked === true) {
-        listText.forEach((element, pos) => {
-          if (index === pos) {
-            element.classList.add('canceltext');
-            list[index].completed = true;
-            storeData(list);
-          }
-        });
-      } else {
-        listText.forEach((element, pos) => {
-          if (index === pos) {
-            element.classList.remove('canceltext');
-            list[index].completed = false;
-            storeData(list);
-          }
-        });
-      }
     });
   });
 };
