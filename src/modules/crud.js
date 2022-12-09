@@ -1,4 +1,4 @@
-import { storeData, getData, completeTask } from './complete.js'
+import { storeData, getData, completeTask } from './complete.js';
 
 const unorderedList = document.querySelector('#unordered');
 
@@ -11,10 +11,10 @@ const storeEdit = () => {
   count.forEach((element, index) => {
     element.addEventListener('click', () => {
       position = index;
-    })
-  })
+    });
+  });
 
-  events.forEach((element, index) => {
+  events.forEach((element) => {
     element.addEventListener('keypress', (event) => {
       if (event.key === 'Enter') {
         const edits = element.value;
@@ -33,7 +33,7 @@ const storeEdit = () => {
           obj.index = position;
           obj.description = edits;
           obj.completed = false;
-          list.splice(position, 1, obj)
+          list.splice(position, 1, obj);
           storeData(list);
           // eslint-disable-next-line no-use-before-define
           createList();
@@ -101,7 +101,6 @@ const clearComplete = () => {
   const removeComplete = document.querySelector('#comp');
   removeComplete.addEventListener('click', () => {
     let list = getData();
-    console.log(list);
     list = list.filter((element) => element.completed === false);
     list.forEach((item, index) => {
       item.index = index;

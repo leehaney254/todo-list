@@ -35,8 +35,8 @@ const completeTask = () => {
           }
         });
       }
-    })
-  })
+    });
+  });
 };
 
-export { storeData, getData, completeTask }
+export { storeData, getData, completeTask };
