@@ -1,5 +1,5 @@
 import './style.css';
-import add, { createList, clearComplete } from './crud.js';
+import add, { createList, clearComplete } from './modules/crud.js';
 
 window.addEventListener('load', createList());
 // Add an event
