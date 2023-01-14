@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/leehaney254/webpack-template#readme",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.19.6",
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.2",
     "eslint": "^7.32.0",
